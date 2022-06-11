@@ -20,7 +20,7 @@ getRecords db dbView expect =
     Http.request {
         method = "GET"
         , headers = [Http.header "Authorization" ("Bearer " ++ db.apiKey)]
-        , url = "https://api.airtable.com/v0" ++ 
+        , url = Debug.log "request" ("https://api.airtable.com/v0" ++ 
             (Url.Builder.absolute [db.base, db.table] 
                 [
                     Url.Builder.string "view" dbView
@@ -28,7 +28,7 @@ getRecords db dbView expect =
                     --Url.Builder.int "pageSize" pageSize, 
                     --Url.Builder.int "offset" offset
                 ]
-            )
+            ))
         , expect = expect
         , body = Http.emptyBody
         , timeout = Nothing
